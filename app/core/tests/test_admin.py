@@ -26,3 +26,9 @@ class AdminSiteTest(TestCase):
 
         self.assertContains(response, self.user.name)
         self.assertContains(response, self.user.email)
+
+    def test_user_edit_page(self):
+        url = reverse('admin:core_user_change', args=[self.user.id])
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
